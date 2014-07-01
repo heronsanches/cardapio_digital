@@ -1,6 +1,6 @@
  
  
-Um															UUniversidade	Federal	da	Bahia		
+Universidade	Federal	da	Bahia		
 Instituto de Matemática 
 Departamento de Ciência da Computação 
 MAT A63 – Engenharia de Software II 
