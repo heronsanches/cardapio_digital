@@ -21,7 +21,7 @@ public class DataBase {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(url, user, password);
 		 } catch (Exception e) {
-		      System.out.println("err in get connection: class DB.java");
+		      System.out.println("err in get connection: class DataBase.java");
 		 }
 	}
 	
