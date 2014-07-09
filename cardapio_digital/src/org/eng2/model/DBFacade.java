@@ -9,12 +9,14 @@ public class DBFacade {
 	private CategoriaDAO categoriaDAO;
 	private ItemDAO itemDAO;
 	private ItemEstoqueDAO itemEstoqueDAO;
+	private MesaDAO mesaDAO;
 	private CardapioDAO cardapioDAO;
 	
 	private DBFacade() {
 		categoriaDAO = new CategoriaDAO();
 		itemDAO = new ItemDAO();
 		itemEstoqueDAO = new ItemEstoqueDAO();
+		mesaDAO = new MesaDAO();
 		
 	}
 	
@@ -79,6 +81,22 @@ public class DBFacade {
 		return itemEstoqueDAO.update(itemEstoque);
 	}
 	
+	// *********************interface para mesa*********************//
+	public Mesa getOneMesa(int id) {
+		return mesaDAO.getOne(id);		
+	}
+
+	public boolean insertMesa(Mesa mesa) {
+		return mesaDAO.insert(mesa);
+	}
+
+	public boolean updateMesa(Mesa mesa) {
+		return mesaDAO.update(mesa);
+	}
+	
+	public boolean deleteMesa(int id) {
+		return mesaDAO.delete(id);
+	}
 	
 	//*********************interface para cardapio*********************//
 	public Cardapio getOneCardapio(int id) {
