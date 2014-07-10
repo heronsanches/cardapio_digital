@@ -25,7 +25,7 @@ ENGINE = InnoDB;
 -- Table `cardapio_digital`.`mesa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cardapio_digital`.`mesa` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `num` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
