@@ -3,6 +3,7 @@ package org.eng2.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MesaDAO {
 
@@ -78,6 +79,32 @@ public class MesaDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	protected ArrayList<Mesa> getAll() {
+		ArrayList<Mesa> list = new ArrayList<Mesa>();
+		
+		PreparedStatement ps;
+		try {
+			ps = DataBase.getConnectionDB().
+					prepareStatement("select * from mesa");						
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Mesa m = new Mesa();
+				
+				m.setId(rs.getInt("id"));
+				m.setNum(rs.getString("num"));
+				
+				list.add(m);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 }

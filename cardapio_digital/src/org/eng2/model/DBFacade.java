@@ -1,6 +1,7 @@
 package org.eng2.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DBFacade {
 
@@ -10,13 +11,14 @@ public class DBFacade {
 	private ItemDAO itemDAO;
 	private ItemEstoqueDAO itemEstoqueDAO;
 	private MesaDAO mesaDAO;
+	private TokenDAO tokenDAO;
 	
 	private DBFacade() {
 		categoriaDAO = new CategoriaDAO();
 		itemDAO = new ItemDAO();
 		itemEstoqueDAO = new ItemEstoqueDAO();
 		mesaDAO = new MesaDAO();
-		
+		tokenDAO = new TokenDAO();
 	}
 	
 	public static DBFacade getInstance() {
@@ -97,7 +99,18 @@ public class DBFacade {
 		return mesaDAO.delete(id);
 	}
 	
-
+	public ArrayList<Mesa> getAllMesa() {
+		return mesaDAO.getAll();
+	}
+	
+	// *********************interface para mesa*********************//
+	public boolean insertToken(Token token) {
+		return tokenDAO.insert(token);
+	}
+	
+	public boolean deleteToken(String cod) {
+		return tokenDAO.delete(cod);
+	}
 	
 	
 }
