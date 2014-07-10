@@ -1,6 +1,7 @@
 package org.eng2.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DBFacade {
 
@@ -44,6 +45,14 @@ public class DBFacade {
 		return categoriaDAO.update(categoria);
 	}
 	
+	public ArrayList<Categoria> getAllCategoria(){
+		try {
+			return categoriaDAO.getAll();
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
 	
 	//*********************interface para item*********************//
 	public Item getOneItem(int id) {
@@ -60,6 +69,14 @@ public class DBFacade {
 	
 	public boolean updateItem(Item item) {
 		return itemDAO.update(item);
+	}
+	
+	public ArrayList<Item> getAllItem(){
+		try {
+			return itemDAO.getAll();
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 	
 	

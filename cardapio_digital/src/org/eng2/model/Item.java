@@ -7,7 +7,7 @@ public class Item {
 	private String descricao;
 	private float preco;
 	private String imagem;
-	private int cardapio_id;
+	private int categoria_id;
 	
 	
 	public int getId() {
@@ -40,11 +40,11 @@ public class Item {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	public int getCardapio_id() {
-		return cardapio_id;
+	public int getCategoria_id() {
+		return categoria_id;
 	}
-	public void setCardapio_id(int cardapio_id) {
-		this.cardapio_id = cardapio_id;
+	public void setCategoria_id(int categoria_id) {
+		this.categoria_id = categoria_id;
 	}
 	
 	

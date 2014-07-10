@@ -3,6 +3,7 @@ package org.eng2.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CategoriaDAO {
 
@@ -72,6 +73,31 @@ public class CategoriaDAO {
 		} catch (Exception e) {}
 		
 		return c;
+	}
+	
+	protected ArrayList<Categoria> getAll() throws SQLException {
+		PreparedStatement ps;
+		Categoria c = null;
+		
+		ArrayList<Categoria> categorias = null;
+		
+		try {
+			ps = DataBase.getConnectionDB().
+					prepareStatement("select * from categoria");
+						
+			ResultSet rs = ps.executeQuery();
+			categorias = new ArrayList<Categoria>();
+			
+			while (rs.next()) {
+				c = new Categoria();
+				
+				c.setId(rs.getInt(1));
+				c.setDescricao(rs.getString(2));
+				categorias.add(c);
+			}
+		} catch (Exception e) {}
+		
+		return categorias;
 	}
 	
 }

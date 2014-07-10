@@ -9,7 +9,7 @@ public class DataBase {
 	
 	private static DataBase db = null;
 	private static String user = "root";
-	private static String password = "";
+	private static String password = "newadmin";
 	private static String url = "jdbc:mysql://localhost/cardapio_digital";
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
