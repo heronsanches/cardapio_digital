@@ -18,6 +18,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/cardapio_digital/nova_categoria">Categoria</a></li>
 						<li><a href="/cardapio_digital/nova_mesa">Mesa</a></li>
+						<li><a href="/cardapio_digital/novo_item">Item</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

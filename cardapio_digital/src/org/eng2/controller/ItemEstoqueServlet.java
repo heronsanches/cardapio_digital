@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eng2.model.Cardapio;
 import org.eng2.model.DBFacade;
+import org.eng2.model.ItemEstoque;
 
 /**
- * Servlet implementation class CardapioServlet
+ * Servlet implementation class ItemEstoqueServlet
  */
-@WebServlet({ "/novo_cardapio", "/edita_cardapio", "/criar_cardapio", "/atualiza_cardapio" })
-public class CardapioServlet extends HttpServlet {
+@WebServlet({ "/novo_itemEstoque", "/edita_itemEstoque", "/criar_itemEstoque", "/atualiza_itemEstoque" })
+public class ItemEstoqueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public CardapioServlet() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ItemEstoqueServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +34,18 @@ public class CardapioServlet extends HttpServlet {
 		
 		String action = request.getServletPath();
 
-		if (action.equals("/novo_cardapio")) {
-			novoCardapio(request, response);
-		} else if (action.equals("/edita_cardapio")) {
-			editaCardapio(request, response);
+		if (action.equals("/novo_itemEstoque")) {
+			novoItemEstoque(request, response);
+		} else if (action.equals("/edita_itemEstoque")) {
+			editaItemEstoque(request, response);
 		}
 
 	}
 	
-	private void novoCardapio(HttpServletRequest request,
+	private void novoItemEstoque(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/novo_cardapio.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/novo_itemEstoque.jsp");
 		
 		try {
 			rd.forward(request, response);
@@ -55,16 +58,16 @@ public class CardapioServlet extends HttpServlet {
 		}
 	}
 	
-	private void editaCardapio(HttpServletRequest request,
+	private void editaItemEstoque(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		Cardapio car = DBFacade.getInstance().
-			getOneCardapio(Integer.parseInt(request.getParameter("id")));
+		ItemEstoque itemEstoque = DBFacade.getInstance().
+			getOneItemEstoque(Integer.parseInt(request.getParameter("id")));
 		
 		RequestDispatcher rd = null;
-		if (car != null) {
-			rd = request.getRequestDispatcher("edita_cardapio.jsp");
-			request.setAttribute("cardapio", car);
+		if (itemEstoque != null) {
+			rd = request.getRequestDispatcher("edita_itemEstoque.jsp");
+			request.setAttribute("itemEstoque", itemEstoque);
 		} else {
 			rd = request.getRequestDispatcher("mensagem.jsp");
 		}
@@ -85,24 +88,25 @@ public class CardapioServlet extends HttpServlet {
 		
 		String action = request.getServletPath();
 
-		if (action.equals("/criar_cardapio")) {
-			criarCardapio(request, response);
-		} else if (action.equals("/atualiza_cardapio")) {
-			atualizaCardapio(request, response);
+		if (action.equals("/criar_itemEstoque")) {
+			criarItemEstoque(request, response);
+		} else if (action.equals("/atualiza_itemEstoque")) {
+			atualizaItemEstoque(request, response);
 		}
 	}
 	
-	private void criarCardapio(HttpServletRequest request, HttpServletResponse response) {
+	private void criarItemEstoque(HttpServletRequest request, HttpServletResponse response) {
 		
-		Cardapio cardapio = new Cardapio();
-		cardapio.setDescricao(request.getParameter("descricao"));
+		ItemEstoque itemEstoque = new ItemEstoque();
+		itemEstoque.setId(Integer.valueOf(request.getParameter("id")));
+		itemEstoque.setItem_id(Integer.valueOf(request.getParameter("item_id")));
 		
 		RequestDispatcher rd = request.getRequestDispatcher("mensagem.jsp");
 		
-		if (DBFacade.getInstance().insertCardapio(cardapio)) {
-			request.setAttribute("mensagem", "Cardápio criado com sucesso!");
+		if (DBFacade.getInstance().insertItemEstoque(itemEstoque)) {
+			request.setAttribute("mensagem", "Item adicionado com sucesso no estoque!");
 		} else {
-			request.setAttribute("mensagem", "Erro ao criar cardápio!");
+			request.setAttribute("mensagem", "Erro ao adicionar item no estoque!");
 		}
 		
 		try {
@@ -116,18 +120,20 @@ public class CardapioServlet extends HttpServlet {
 		}
 	}
 	
-	private void atualizaCardapio(HttpServletRequest request, HttpServletResponse response) {
-		Cardapio cardapio = DBFacade.getInstance().
-				getOneCardapio(Integer.parseInt(request.getParameter("id")));
+	private void atualizaItemEstoque(HttpServletRequest request, HttpServletResponse response) {
 		
-		cardapio.setDescricao(request.getParameter("descricao"));
+		ItemEstoque itemEstoque = DBFacade.getInstance().
+				getOneItemEstoque(Integer.parseInt(request.getParameter("id")));
+		
+		itemEstoque.setId(Integer.valueOf(request.getParameter("id")));
+		itemEstoque.setItem_id(Integer.valueOf(request.getParameter("item_id")));
 		
 		RequestDispatcher rd = request.getRequestDispatcher("mensagem.jsp");
 		
-		if (DBFacade.getInstance().updateCardapio(cardapio)) {
-			request.setAttribute("mensagem", "Cardápio atualizado com sucesso!");
+		if (DBFacade.getInstance().updateItemEstoque(itemEstoque)) {
+			request.setAttribute("mensagem", "Item do estoque atualizado ncom sucesso!");
 		} else {
-			request.setAttribute("mensagem", "Erro ao atualizar cardápio!");
+			request.setAttribute("mensagem", "Erro ao atualizar item do estoque!");
 		}
 		
 		try {
@@ -140,5 +146,4 @@ public class CardapioServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

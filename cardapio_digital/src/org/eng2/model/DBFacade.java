@@ -10,7 +10,6 @@ public class DBFacade {
 	private ItemDAO itemDAO;
 	private ItemEstoqueDAO itemEstoqueDAO;
 	private MesaDAO mesaDAO;
-	private CardapioDAO cardapioDAO;
 	
 	private DBFacade() {
 		categoriaDAO = new CategoriaDAO();
@@ -98,22 +97,7 @@ public class DBFacade {
 		return mesaDAO.delete(id);
 	}
 	
-	//*********************interface para cardapio*********************//
-	public Cardapio getOneCardapio(int id) {
-		try {
-			return cardapioDAO.getOne(id);
-		} catch (SQLException e) {
-			return null;
-		}
-	}
 
-	public boolean insertCardapio(Cardapio cardapio) {
-		return cardapioDAO.insert(cardapio);
-	}
-	
-	public boolean updateCardapio(Cardapio cardapio) {
-		return cardapioDAO.update(cardapio);
-	}
 	
 	
 }
