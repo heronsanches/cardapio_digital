@@ -18,39 +18,41 @@
     
       <div class="row">
          <div class="col-md-8 col-md-offset-2">
-            <form action="/cardapio_digital/criar_item" method="post">
+            <form action="/cardapio_digital/atualiza_item" method="post">
                <div class="panel panel-default">
                   <div class="panel-heading">
-                     <h1 class="panel-title">Cadastrar novo item</h1>
-                  </div>
+                     <h1 class="panel-title">Editar item</h1>
+                  </div>                 
                   <div class="panel-body">
+
+                     <input type="hidden" class="form-control"  name="id" id="id" value="${item.id}">
                      <div class="form-group">
                         <label for="description">Título:</label>
-                        <input class="form-control" name="titulo" id="titulo" placeholder="Informe um título para o item">
+                        <input class="form-control" name="titulo" id="titulo" placeholder="${item.titulo}">
                      </div>
                      <div class="form-group">
                         <label for="description">Descrição:</label>
-                        <input class="form-control" name="descricao" id="descricao" placeholder="Informe a descrição do item">
+                        <input class="form-control" name="descricao" id="descricao" placeholder="${item.descricao}">
                      </div>
                      <div class="form-group">
                         <label for="description">Preço:</label>
-                        <input class="form-control" name="preco" id="preco" placeholder="Informe o preço do item no seguinte formato: 10.00">
+                        <input class="form-control" name="preco" id="preco" placeholder="R$ ${item.preco}">
                      </div>
                      <div class="form-group">
                         <label for="description">Imagem:</label>
-                        <input class="form-control" name="imagem" id="imagem" placeholder="Informe o caminho completo de onde está salvo a imagem">
+                        <input class="form-control" name="imagem" id="imagem" placeholder="${item.imagem}">
                      </div>
                      <div class="form-group">
                         <label for="description">Selecione a categoria:</label>
                         <select class="form-control" id="categoria" name="categoria">
-	                        <c:forEach var="categoria" items="${categorias}" >
-								       <option value="${categoria.descricao} - ${categoria.id}">
-								          ${categoria.descricao} - ${categoria.id}
-								       </option>
-									</c:forEach>
-								</select>
+                           <c:forEach var="categoria" items="${categorias}" >
+                               <option value="${categoria.descricao} - ${categoria.id}">
+                                  ${categoria.descricao} - ${categoria.id}
+                               </option>
+                           </c:forEach>
+                        </select>
                      </div>
-                     <input type="submit" value="Salvar" name="button" class="btn btn-default" />
+                     <input type="submit" value="Atualizar" name="button" class="btn btn-default" />
                   </div>
                   
                </div>
