@@ -45,6 +45,9 @@
                      <div class="form-group">
                         <label for="description">Selecione a categoria:</label>
                         <select class="form-control" id="categoria" name="categoria">
+                           <option selected="selected" value="${cat_selecionada.descricao}
+                            - ${cat_selecionada.id}">
+                            ${cat_selecionada.descricao} - ${cat_selecionada.id}</option>
                            <c:forEach var="categoria" items="${categorias}" >
                                <option value="${categoria.descricao} - ${categoria.id}">
                                   ${categoria.descricao} - ${categoria.id}

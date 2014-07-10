@@ -100,6 +100,8 @@ public class ItemServlet extends HttpServlet {
 			rd = request.getRequestDispatcher("edita_item.jsp");
 			request.setAttribute("item", item);
 			request.setAttribute("categorias", DBFacade.getInstance().getAllCategoria());
+			request.setAttribute("cat_selecionada", DBFacade.getInstance()
+				.getOneCategoria(item.getCategoria_id()));
 		} else {
 			rd = request.getRequestDispatcher("mensagem.jsp");
 		}
