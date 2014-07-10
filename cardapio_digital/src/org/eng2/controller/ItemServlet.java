@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eng2.model.Cardapio;
 import org.eng2.model.DBFacade;
 import org.eng2.model.Item;
 
