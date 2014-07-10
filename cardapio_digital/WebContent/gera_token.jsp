@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label for="description">Identificador da mesa</label>
                                 <br/>
-                                <select name="mesa_id">
+                                <select class="form-control" name="mesa_id">
                                 <% for(Mesa mesa:mesas) { %>
                                     <option value="<%= mesa.getId() %>"><%= mesa.getNum() %></option>
                                 <% } %>

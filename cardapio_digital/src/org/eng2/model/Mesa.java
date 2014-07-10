@@ -4,6 +4,11 @@ public class Mesa {
 
 	private int id;
 	private String num;
+	private boolean ativa;
+	
+	public Mesa(){
+		ativa = false;
+	}
 
 	public int getId() {
 		return id;
@@ -20,5 +25,14 @@ public class Mesa {
 	public void setNum(String num) {
 		this.num = num;
 	}
+
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void setAtiva(boolean ativa) {
+		this.ativa = ativa;
+	}
+	
 
 }
