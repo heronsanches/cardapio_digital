@@ -11,8 +11,9 @@ public class MesaDAO {
 		PreparedStatement ps;
 		try {
 			ps = DataBase.getConnectionDB().
-					prepareStatement("insert into mesa(num) values(?)");			
+					prepareStatement("insert into mesa(num, ativa) values(?, ?)");			
 			ps.setString(1, m.getNum());
+			ps.setBoolean(2, m.isAtiva());
 			ps.execute();
 			return true;
 		} catch (SQLException e) {
@@ -38,6 +39,7 @@ public class MesaDAO {
 				
 				m.setId(rs.getInt("id"));
 				m.setNum(rs.getString("num"));
+				m.setAtiva(rs.getBoolean("ativa"));
 			}	
 			return m;
 		} catch (SQLException e) {
@@ -52,9 +54,10 @@ public class MesaDAO {
 		PreparedStatement ps;
 		try {
 			ps = DataBase.getConnectionDB().
-					prepareStatement("update mesa set num=? where id=?");			
+					prepareStatement("update mesa set num=?, ativa=? where id=?");			
 			ps.setString(1, m.getNum());
-			ps.setInt(2, m.getId());
+			ps.setBoolean(2, m.isAtiva());
+			ps.setInt(3, m.getId());
 			ps.execute();
 			return true;
 		} catch (SQLException e) {
@@ -95,6 +98,7 @@ public class MesaDAO {
 				
 				m.setId(rs.getInt("id"));
 				m.setNum(rs.getString("num"));
+				m.setAtiva(rs.getBoolean("ativa"));
 				
 				list.add(m);
 			}	

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eng2.model.DBFacade;
-import org.eng2.model.Token;
 import org.eng2.model.Mesa;
+import org.eng2.model.Token;
 
 
 /**
@@ -89,19 +89,30 @@ public class TokenServlet extends HttpServlet {
 	
 	private void criarToken(HttpServletRequest request,
 			HttpServletResponse response) {
-		String uuid = UUID.randomUUID().toString().split("-")[0];
 		
-		Token token = new Token();
-		token.setCod(uuid.substring(0, 6));
-		token.setMesaId(Integer.parseInt(request.getParameter("mesa_id")));
+		RequestDispatcher rd = request.getRequestDispatcher("mensagem.jsp");
+		Mesa mesa = DBFacade.getInstance().getOneMesa(Integer.parseInt(
+				request.getParameter("mesa_id")));
 		
-		RequestDispatcher rd = request
-				.getRequestDispatcher("mensagem.jsp");
-		if (DBFacade.getInstance().insertToken(token)) {
-			request.setAttribute("mensagem", "Token criado: " + uuid);
-		} else {
-			request.setAttribute("mensagem", "Erro ao criar token!");
-		}
+		if( !mesa.isAtiva() ){
+			
+			String uuid = UUID.randomUUID().toString().split("-")[0];
+			
+			Token token = new Token();
+			token.setCod(uuid.substring(0, 6));
+			token.setMesaId(Integer.parseInt(request.getParameter("mesa_id")));
+			
+			if (DBFacade.getInstance().insertToken(token)) {
+				mesa.setAtiva(true);
+				DBFacade.getInstance().updateMesa(mesa);
+				request.setAttribute("mensagem", "Token criado: " + uuid);
+			} else {
+				request.setAttribute("mensagem", "Erro ao criar token!");
+			}
+			
+		}else
+			request.setAttribute("mensagem", "Mesa está ocupada, informe outra mesa!");
+
 		
 		try {
 			rd.forward(request, response);
