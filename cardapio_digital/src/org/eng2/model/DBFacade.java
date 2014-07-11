@@ -54,6 +54,10 @@ public class DBFacade {
 		}
 	}
 	
+	public int deleteCategoria(int id){
+		return categoriaDAO.delete(id);
+	}
+	
 	
 	//*********************interface para item*********************//
 	public Item getOneItem(int id) {
@@ -78,6 +82,10 @@ public class DBFacade {
 		} catch (SQLException e) {
 			return null;
 		}
+	}
+	
+	public int deleteItem(int id){
+		return itemDAO.delete(id);
 	}
 	
 	
@@ -111,7 +119,7 @@ public class DBFacade {
 		return mesaDAO.update(mesa);
 	}
 	
-	public boolean deleteMesa(int id) {
+	public int deleteMesa(int id) {
 		return mesaDAO.delete(id);
 	}
 	

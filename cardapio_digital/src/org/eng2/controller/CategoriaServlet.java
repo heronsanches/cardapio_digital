@@ -15,7 +15,8 @@ import org.eng2.model.DBFacade;
 /**
  * Servlet implementation class CategoriaServlet
  */
-@WebServlet({ "/nova_categoria", "/edita_categoria", "/criar_categoria", "/atualiza_categoria" })
+@WebServlet({ "/nova_categoria", "/edita_exclui_categoria", "/criar_categoria", "/atualiza_categoria",
+	"/escolhe_edita_exclui_categoria"})
 public class CategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,14 +34,43 @@ public class CategoriaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
 		String action = request.getServletPath();
 
 		if (action.equals("/nova_categoria")) {
 			novaCategoria(request, response);
-		} else if (action.equals("/edita_categoria")) {
-			editaCategoria(request, response);
+		} else if (action.equals("/escolhe_edita_exclui_categoria")) {
+			escolheEditaExcluiCategoria(request, response);
 		}
 
+	}
+	
+	private void novaCategoria(HttpServletRequest request, HttpServletResponse response) {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("nova_categoria.jsp");
+		
+		try {
+			rd.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void escolheEditaExcluiCategoria(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		request.setAttribute("categorias", DBFacade.getInstance().getAllCategoria());
+		RequestDispatcher rd = request.getRequestDispatcher("/escolhe_edita_exclui_categoria.jsp");
+		try {
+			rd.forward(request, response);
+			
+		} catch (ServletException e) {
+			
+		} catch (IOException e) { }
 	}
 
 	/**
@@ -53,8 +83,49 @@ public class CategoriaServlet extends HttpServlet {
 
 		if (action.equals("/criar_categoria")) {
 			criarCetegoria(request, response);
-		} else if (action.equals("/atualiza_categoria")) {
+		} else if (action.equals("/edita_exclui_categoria")) {
+			editaExcluiCategoria(request, response);
+		} else if(action.equals("/atualiza_categoria")){
 			atualizaCategoria(request, response);
+		}
+	}
+	
+	private void editaExcluiCategoria(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		Categoria categoria = DBFacade.getInstance().
+			getOneCategoria(Integer.parseInt(request.getParameter("categoria").split("-")[1].trim()));
+		
+		RequestDispatcher rd = null;
+		if (categoria != null){
+			
+			if(request.getParameter("button").equals("Editar")){
+				
+				rd = request.getRequestDispatcher("edita_categoria.jsp");
+				request.setAttribute("categoria", categoria);
+				
+			}else{ //excluir
+				
+				rd = request.getRequestDispatcher("mensagem.jsp");
+
+				if(DBFacade.getInstance().deleteCategoria(categoria.getId()) > 0){
+					request.setAttribute("mensagem", "Categoria excluída com sucesso!");
+				}else{
+					request.setAttribute("mensagem", "Categoria não excluída!");
+				}
+				
+			}
+			
+		} else {
+			rd = request.getRequestDispatcher("mensagem.jsp");
+		}
+		
+		try {
+			rd.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -82,48 +153,13 @@ public class CategoriaServlet extends HttpServlet {
 		}
 	}
 
-	private void novaCategoria(HttpServletRequest request,
-			HttpServletResponse response) {
-		RequestDispatcher rd = request
-				.getRequestDispatcher("nova_categoria.jsp");
-		try {
-			rd.forward(request, response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private void editaCategoria(HttpServletRequest request,
-			HttpServletResponse response) {
-		Categoria cat = DBFacade.getInstance().
-			getOneCategoria(Integer.parseInt(request.getParameter("id")));
-		
-		RequestDispatcher rd = null;
-		if (cat != null) {
-			rd = request.getRequestDispatcher("edita_categoria.jsp");
-			request.setAttribute("categoria", cat);
-		} else {
-			rd = request.getRequestDispatcher("mensagem.jsp");
-		}
-		
-		try {
-			rd.forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	private void atualizaCategoria(HttpServletRequest request,
 			HttpServletResponse response) {
-		Categoria cat = DBFacade.getInstance().
-				getOneCategoria(Integer.parseInt(request.getParameter("id")));
 		
+		Categoria cat = new Categoria();
+		cat.setId(Integer.parseInt(request.getParameter("id")));
 		cat.setDescricao(request.getParameter("descricao"));
 		
 		RequestDispatcher rd = request

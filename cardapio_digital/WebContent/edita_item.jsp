@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,7 +7,7 @@
 <style type="text/css">
 <%@include file="resources/css/bootstrap.min.css" %>
 </style>
-<title>Card√°pio Digital</title>
+<title>Card·pio Digital</title>
 </head>
 <body>
 
@@ -27,20 +26,24 @@
 
                      <input type="hidden" class="form-control"  name="id" id="id" value="${item.id}">
                      <div class="form-group">
-                        <label for="description">T√≠tulo:</label>
-                        <input class="form-control" name="titulo" id="titulo" placeholder="${item.titulo}">
+                        <label for="description">TÌtulo:</label>
+                        <input class="form-control" name="titulo" id="titulo" value="${item.titulo}"
+                         placeholder="Informe um tÌtulo para o item">
                      </div>
                      <div class="form-group">
-                        <label for="description">Descri√ß√£o:</label>
-                        <input class="form-control" name="descricao" id="descricao" placeholder="${item.descricao}">
+                        <label for="description">DescriÁ„o:</label>
+                        <input class="form-control" name="descricao" id="descricao" value="${item.descricao}"
+                         placeholder="Informe uma descriÁ„o para este item">
                      </div>
                      <div class="form-group">
-                        <label for="description">Pre√ßo:</label>
-                        <input class="form-control" name="preco" id="preco" placeholder="R$ ${item.preco}">
+                        <label for="description">PreÁo:</label>
+                        <input class="form-control" name="preco" id="preco" value="${item.preco}"
+                         placeholder="Informe o preÁo no formato: valorInteiro.DuasCasasDecimais, ex.: 23.56">
                      </div>
                      <div class="form-group">
                         <label for="description">Imagem:</label>
-                        <input class="form-control" name="imagem" id="imagem" placeholder="${item.imagem}">
+                        <input class="form-control" name="imagem" id="imagem" value="${item.imagem}"
+                        placeholder="Informe o caminho de onde est· localizado a imagem">
                      </div>
                      <div class="form-group">
                         <label for="description">Selecione a categoria:</label>
@@ -49,8 +52,8 @@
                             - ${cat_selecionada.id}">
                             ${cat_selecionada.descricao} - ${cat_selecionada.id}</option>
                            <c:forEach var="categoria" items="${categorias}" >
-                               <option value="${categoria.descricao} - ${categoria.id}">
-                                  ${categoria.descricao} - ${categoria.id}
+                               <option value="${categoria.descricao} ##${categoria.id}">
+                                  ${categoria.descricao} ##${categoria.id}
                                </option>
                            </c:forEach>
                         </select>

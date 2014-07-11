@@ -1,19 +1,17 @@
-<%@page import="org.eng2.model.Categoria"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 <%@include file = "resources/css/bootstrap.min.css" %>
 </style>
-<title>Card√°pio Digital</title>
+<title>Card·pio Digital</title>
 </head>
 <body>
 
 	<%@include file="shared/top.jsp"%>
-    <% Categoria cat = (Categoria) request.getAttribute("categoria"); %>
 	<div class="container">
 
 		<div class="row">
@@ -27,9 +25,9 @@
 							<div class="form-group">
 								<label for="descricao">Nome da categoria</label> <input
 									class="form-control" name="descricao" id="descricao"
-									placeholder="Informe o nome da categoria" value="<%= cat.getDescricao() %>"/>
+									placeholder="Informe o nome da categoria" value="${categoria.descricao}"/>
 							</div>
-							<input type="hidden" name="id" value="<%= cat.getId() %>" />
+							<input type="hidden" name="id" value="${categoria.id}" />
 							<input type="submit" value="Salvar" name="button"
 								class="btn btn-default" />
 						</div>

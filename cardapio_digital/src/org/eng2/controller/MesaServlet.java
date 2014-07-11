@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eng2.model.Categoria;
 import org.eng2.model.DBFacade;
 import org.eng2.model.Mesa;
 
@@ -86,12 +85,12 @@ public class MesaServlet extends HttpServlet {
 	
 	private void removeMesa(HttpServletRequest request,
 			HttpServletResponse response) {
-		boolean r = DBFacade.getInstance().
+		int r = DBFacade.getInstance().
 				deleteMesa(Integer.parseInt(request.getParameter("id")));
 		
 		RequestDispatcher rd = request
 				.getRequestDispatcher("mensagem.jsp");
-		if (r) {
+		if (r > 0) {
 			request.setAttribute("mensagem", "Mesa removida com sucesso!");
 		} else {
 			request.setAttribute("mensagem", "Erro ao romver mesa!");
