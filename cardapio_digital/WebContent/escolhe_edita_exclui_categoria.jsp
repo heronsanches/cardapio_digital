@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
 <!DOCTYPE html>
@@ -7,7 +8,7 @@
 <style type="text/css">
 <%@include file="resources/css/bootstrap.min.css" %>
 </style>
-<title>Card·pio Digital</title>
+<title>Card√°pio Digital</title>
 </head>
 <body>
 
@@ -20,11 +21,11 @@
             <form action="/cardapio_digital/edita_exclui_categoria" method="post">
                <div class="panel panel-default">
                   <div class="panel-heading">
-                     <h1 class="panel-title">EdiÁ„o ou Exclus„o > Categoria</h1>
+                     <h1 class="panel-title">Edi√ß√£o ou Exclus√£o > Categoria</h1>
                   </div>
                   <div class="panel-body">
                      <div class="form-group">
-                        <label for="description">Selecione categoria para ediÁ„o ou exclus„o:</label>
+                        <label for="description">Selecione categoria para edi√ß√£o ou exclus√£o:</label>
                         <select class="form-control" name="categoria">
                            <c:forEach var="categoria" items="${categorias}" >
                                <option value="${categoria.descricao} - ${categoria.id}">
