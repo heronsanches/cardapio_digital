@@ -127,13 +127,17 @@ public class DBFacade {
 		return mesaDAO.getAll();
 	}
 	
-	// *********************interface para mesa*********************//
+	// *********************interface para token*********************//
 	public boolean insertToken(Token token) {
 		return tokenDAO.insert(token);
 	}
 	
 	public boolean deleteToken(String cod) {
 		return tokenDAO.delete(cod);
+	}
+	
+	public ArrayList<Token> getAllToken() {
+		return tokenDAO.getAll();
 	}
 	
 	

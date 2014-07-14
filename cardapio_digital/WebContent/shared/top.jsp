@@ -27,8 +27,9 @@
                data-toggle="dropdown">Editar / Excluir <span class="caret"></span></a>
                <ul class="dropdown-menu" role="menu">
                     <li><a href="/cardapio_digital/escolhe_edita_exclui_item">Item</a></li>
-                    <li><a href="/cardapio_digital/escolhe_edita_exclui_categoria">Categoria</a></li>   
-                       
+                    <li><a href="/cardapio_digital/escolhe_edita_exclui_categoria">Categoria</a></li>
+                    <li><a href="/cardapio_digital/escolhe_edita_exclui_mesa">Mesa</a></li>
+                    <li><a href="/cardapio_digital/escolhe_token">Token</a></li>
                </ul>
             </li>
 			</ul>

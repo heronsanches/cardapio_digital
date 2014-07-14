@@ -15,7 +15,7 @@ import org.eng2.model.Mesa;
 /**
  * Servlet implementation class MesaServlet
  */
-@WebServlet({ "/nova_mesa", "/cria_mesa", "/edita_mesa", "/atualiza_mesa", "/remove_mesa" })
+@WebServlet({ "/nova_mesa", "/cria_mesa", "/edita_mesa", "/atualiza_mesa", "/remove_mesa", "/escolhe_edita_exclui_mesa", "/edita_exclui_mesa" })
 public class MesaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,6 +38,8 @@ public class MesaServlet extends HttpServlet {
 			editaMesa(request, response);
 		} else if (action.equals("/remove_mesa")) {
 			removeMesa(request, response);
+		} else if (action.equals("/escolhe_edita_exclui_mesa")) {
+			escolheEditaExcluiItem(request, response);
 		}
 	}
 
@@ -51,6 +53,8 @@ public class MesaServlet extends HttpServlet {
 			criaMesa(request, response);
 		} else if (action.equals("/atualiza_mesa")) {
 			atualizaMesa(request, response);
+		} else if (action.equals("/edita_exclui_mesa")) {
+			editaExcluiMesa(request, response);
 		}
 	}
 
@@ -150,6 +154,38 @@ public class MesaServlet extends HttpServlet {
 		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void escolheEditaExcluiItem(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		request.setAttribute("lista_mesa", DBFacade.getInstance().getAllMesa());
+		RequestDispatcher rd = request
+				.getRequestDispatcher("escolhe_mesa.jsp");
+		try {
+			rd.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void editaExcluiMesa(HttpServletRequest request,
+			HttpServletResponse response) {
+		String redirect = "/cardapio_digital";
+		if (request.getParameter("button").equals("Editar")) {
+			redirect += "/edita_mesa?id=" + request.getParameter("mesa_id");
+		} else if (request.getParameter("button").equals("Remover")) {
+			redirect += "/remove_mesa?id=" + request.getParameter("mesa_id");
+		}
+		
+		try {
+			response.sendRedirect(redirect);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

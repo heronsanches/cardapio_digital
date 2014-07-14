@@ -18,7 +18,7 @@ import org.eng2.model.Token;
 /**
  * Servlet implementation class TokenServlet
  */
-@WebServlet({ "/gerar_token", "/deletar_token", "/criar_token" })
+@WebServlet({ "/gerar_token", "/deletar_token", "/criar_token", "/escolhe_token" })
 public class TokenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,6 +39,8 @@ public class TokenServlet extends HttpServlet {
 			gerarToken(request, response);
 		} else if (action.equals("/deletar_token")) {
 			deletartoken(request, response);
+		} else if (action.equals("/escolhe_token")) {
+			escolheToken(request, response);
 		}
 	}
 
@@ -121,6 +123,20 @@ public class TokenServlet extends HttpServlet {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void escolheToken(HttpServletRequest request,
+			HttpServletResponse response) {
+		request.setAttribute("lista_tokens", DBFacade.getInstance().getAllToken());
+		RequestDispatcher rd = request
+				.getRequestDispatcher("escolhe_token.jsp");
+		try {
+			rd.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
