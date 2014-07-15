@@ -100,4 +100,20 @@ public class CategoriaDAO {
 		return categorias;
 	}
 	
+	protected int delete(int id) {
+		PreparedStatement ps;
+		int count = 0;
+		
+		try {
+			ps = DataBase.getConnectionDB().prepareStatement("delete from categoria where id=?");
+			
+			ps.setInt(1, id);
+			count = ps.executeUpdate();
+			
+		} catch (Exception e) { }
+		
+		return count;
+		
+	}
+	
 }

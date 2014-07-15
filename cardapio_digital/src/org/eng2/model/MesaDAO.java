@@ -68,20 +68,20 @@ public class MesaDAO {
 		return false;
 	}
 	
-	protected boolean delete(int id) {
+	protected int delete(int id) {
 		PreparedStatement ps;
+		int count = 0;
+		
 		try {
-			ps = DataBase.getConnectionDB().
-					prepareStatement("delete from mesa where id=?");			
+			ps = DataBase.getConnectionDB().prepareStatement("delete from mesa where id=?");
+			
 			ps.setInt(1, id);
-			ps.execute();
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
+			count = ps.executeUpdate();
+			
+		} catch (Exception e) { }
+		
+		return count;
+		
 	}
 	
 	protected ArrayList<Mesa> getAll() {

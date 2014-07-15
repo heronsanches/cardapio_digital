@@ -12,7 +12,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/cardapio_digital/">Início</a></li>
+				<li class="active"><a href="/cardapio_digital">Início</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Cadastrar <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -24,9 +24,12 @@
 			   </li>
 			   
             <li class="dropdown"><a href="#" class="dropdown-toggle"
-               data-toggle="dropdown">Editar <span class="caret"></span></a>
+               data-toggle="dropdown">Editar / Excluir <span class="caret"></span></a>
                <ul class="dropdown-menu" role="menu">
-                    <li><a href="/cardapio_digital/escolhe_edita_item">Item</a></li>   
+                    <li><a href="/cardapio_digital/escolhe_edita_exclui_item">Item</a></li>
+                    <li><a href="/cardapio_digital/escolhe_edita_exclui_categoria">Categoria</a></li>
+                    <li><a href="/cardapio_digital/escolhe_edita_exclui_mesa">Mesa</a></li>
+                    <li><a href="/cardapio_digital/escolhe_token">Token</a></li>
                </ul>
             </li>
 			</ul>

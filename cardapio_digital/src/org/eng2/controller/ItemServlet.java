@@ -16,7 +16,7 @@ import org.eng2.model.Item;
 /**
  * Servlet implementation class Item
  */
-@WebServlet({ "/novo_item", "/edita_item", "/criar_item", "/atualiza_item", "/escolhe_edita_item" })
+@WebServlet({ "/novo_item", "/edita_exclui_item", "/criar_item", "/atualiza_item", "/escolhe_edita_exclui_item" })
 public class ItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +34,8 @@ public class ItemServlet extends HttpServlet {
 
 		if (action.equals("/novo_item")) {
 			novoItem(request, response);
-		} else if (action.equals("/escolhe_edita_item")) {
-			escolheEditaItem(request, response);
+		} else if (action.equals("/escolhe_edita_exclui_item")) {
+			escolheEditaExcluiItem(request, response);
 		}
 
 	}
@@ -57,11 +57,11 @@ public class ItemServlet extends HttpServlet {
 		}
 	}
 	
-	private void escolheEditaItem(HttpServletRequest request,
+	private void escolheEditaExcluiItem(HttpServletRequest request,
 			HttpServletResponse response) {
 		
 		request.setAttribute("items", DBFacade.getInstance().getAllItem());
-		RequestDispatcher rd = request.getRequestDispatcher("/escolhe_edita_item.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/escolhe_edita_exclui_item.jsp");
 		try {
 			rd.forward(request, response);
 			
@@ -83,25 +83,41 @@ public class ItemServlet extends HttpServlet {
 			criarItem(request, response);
 		} else if (action.equals("/atualiza_item")) {
 			atualizaItem(request, response);
-		}else if(action.equals("/edita_item")){
-			editaItem(request, response);
+		}else if(action.equals("/edita_exclui_item")){
+			editaExcluiItem(request, response);
 		}
 	}
 	
 
-	private void editaItem(HttpServletRequest request,
+	private void editaExcluiItem(HttpServletRequest request,
 			HttpServletResponse response) {
 		
 		Item item = DBFacade.getInstance().
 			getOneItem(Integer.parseInt(request.getParameter("item").split("-")[1].trim()));
 		
 		RequestDispatcher rd = null;
-		if (item != null) {
-			rd = request.getRequestDispatcher("edita_item.jsp");
-			request.setAttribute("item", item);
-			request.setAttribute("categorias", DBFacade.getInstance().getAllCategoria());
-			request.setAttribute("cat_selecionada", DBFacade.getInstance()
-				.getOneCategoria(item.getCategoria_id()));
+		if (item != null){
+			
+			if(request.getParameter("button").equals("Editar")){
+				
+				rd = request.getRequestDispatcher("edita_item.jsp");
+				request.setAttribute("item", item);
+				request.setAttribute("categorias", DBFacade.getInstance().getAllCategoria());
+				request.setAttribute("cat_selecionada", DBFacade.getInstance()
+					.getOneCategoria(item.getCategoria_id()));
+				
+			}else{ //excluir
+				
+				rd = request.getRequestDispatcher("mensagem.jsp");
+
+				if(DBFacade.getInstance().deleteItem(item.getId()) > 0){
+					request.setAttribute("mensagem", "Item excluído com sucesso!");
+				}else{
+					request.setAttribute("mensagem", "Item não excluído!");
+				}
+				
+			}
+			
 		} else {
 			rd = request.getRequestDispatcher("mensagem.jsp");
 		}

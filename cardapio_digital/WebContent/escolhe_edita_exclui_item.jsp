@@ -18,10 +18,10 @@
     
       <div class="row">
          <div class="col-md-8 col-md-offset-2">
-            <form action="/cardapio_digital//edita_item" method="post">
+            <form action="/cardapio_digital/edita_exclui_item" method="post">
                <div class="panel panel-default">
                   <div class="panel-heading">
-                     <h1 class="panel-title">Escolher item para edição</h1>
+                     <h1 class="panel-title">Edição ou Exclusão > Item</h1>
                   </div>
                   <div class="panel-body">
                      <div class="form-group">
@@ -34,9 +34,9 @@
                            </c:forEach>
                         </select>
                      </div>
-                     <input type="submit" value="OK" name="button" class="btn btn-default" />
+                     <input type="submit" value="Editar" name="button" class="btn btn-default" />
+                     <input type="submit" value="Excluir" name="button" class="btn btn-default" />
                   </div>
-                  
                </div>
             </form>
          </div>

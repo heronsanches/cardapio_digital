@@ -28,19 +28,23 @@
                      <input type="hidden" class="form-control"  name="id" id="id" value="${item.id}">
                      <div class="form-group">
                         <label for="description">Título:</label>
-                        <input class="form-control" name="titulo" id="titulo" placeholder="${item.titulo}">
+                        <input class="form-control" name="titulo" id="titulo" value="${item.titulo}"
+                         placeholder="Informe um título para o item">
                      </div>
                      <div class="form-group">
                         <label for="description">Descrição:</label>
-                        <input class="form-control" name="descricao" id="descricao" placeholder="${item.descricao}">
+                        <input class="form-control" name="descricao" id="descricao" value="${item.descricao}"
+                         placeholder="Informe uma descrição para este item">
                      </div>
                      <div class="form-group">
                         <label for="description">Preço:</label>
-                        <input class="form-control" name="preco" id="preco" placeholder="R$ ${item.preco}">
+                        <input class="form-control" name="preco" id="preco" value="${item.preco}"
+                         placeholder="Informe o preço no formato: valorInteiro.DuasCasasDecimais, ex.: 23.56">
                      </div>
                      <div class="form-group">
                         <label for="description">Imagem:</label>
-                        <input class="form-control" name="imagem" id="imagem" placeholder="${item.imagem}">
+                        <input class="form-control" name="imagem" id="imagem" value="${item.imagem}"
+                        placeholder="Informe o caminho de onde está localizado a imagem">
                      </div>
                      <div class="form-group">
                         <label for="description">Selecione a categoria:</label>
@@ -49,8 +53,8 @@
                             - ${cat_selecionada.id}">
                             ${cat_selecionada.descricao} - ${cat_selecionada.id}</option>
                            <c:forEach var="categoria" items="${categorias}" >
-                               <option value="${categoria.descricao} - ${categoria.id}">
-                                  ${categoria.descricao} - ${categoria.id}
+                               <option value="${categoria.descricao} ##${categoria.id}">
+                                  ${categoria.descricao} ##${categoria.id}
                                </option>
                            </c:forEach>
                         </select>
