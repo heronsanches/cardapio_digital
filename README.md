@@ -18,4 +18,4 @@ private static String url = "jdbc:mysql://localhost/cardapio_digital";
 private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 ````
  <br>
- <h2><a href="https://github.com/heronsanches/cardapio_digital/blob/master/doc/Documentocasodeuso.pdf?raw=true">Documento de caso de uso </a></h2>
+ <h3><a href="https://github.com/heronsanches/cardapio_digital/blob/master/doc/Documentocasodeuso.pdf?raw=true">Documento de caso de uso, clique aqui </a></h3>
