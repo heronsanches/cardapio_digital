@@ -7,7 +7,7 @@
  
  <h2> Utilização do Banco de Dados na aplicação</h2>
  --Criar banco de dados mysql com o nome "cardapio_digital"<br>
- --Executar script para criar tabelas do banco de dados <a src="https://github.com/heronsanches/cardapio_digital/blob/master/doc/database.sql"> </a>
+ --Executar script para criar tabelas do banco de dados <a src="https://github.com/heronsanches/cardapio_digital/blob/master/doc/database.sql"> database.sql</a><br>
  --Setar atributos na classe <a src="https://github.com/heronsanches/cardapio_digital/blob/master/cardapio_digital/src/org/eng2/model/DataBase.java">DataBase.java</a><br>
  --Atributos:<br>
  ````java
