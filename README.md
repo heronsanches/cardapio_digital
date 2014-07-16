@@ -7,14 +7,15 @@
  
  <h2> Utilização do Banco de Dados na aplicação</h2>
  --Criar banco de dados mysql com o nome "cardapio_digital"<br>
- --Executar script para criar tabelas do banco de dados <a src="https://github.com/heronsanches/cardapio_digital/blob/master/doc/database.sql"> database.sql</a><br>
- --Setar atributos na classe <a src="https://github.com/heronsanches/cardapio_digital/blob/master/cardapio_digital/src/org/eng2/model/DataBase.java">DataBase.java</a><br>
+ --Executar script para criar tabelas do banco de dados <a href="https://github.com/heronsanches/cardapio_digital/blob/master/doc/database.sql"> database.sql</a><br>
+ --Setar atributos na classe <a href="https://github.com/heronsanches/cardapio_digital/blob/master/cardapio_digital/src/org/eng2/model/DataBase.java">DataBase.java</a><br>
  --Atributos:<br>
- ````java
- private static DataBase db = null;
-	private static String user = "root"; 
-	private static String password = ""; //senha do banco de dados mysql
-	private static String url = "jdbc:mysql://localhost/cardapio_digital";
-	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
- ````<br>
- <h2><a src="https://github.com/heronsanches/cardapio_digital/blob/master/doc/Documentocasodeuso.pdf?raw=true">Documento de caso de uso </a></h2>
+````java
+private static DataBase db = null;
+private static String user = "root"; 
+private static String password = ""; //senha do banco de dados mysql
+private static String url = "jdbc:mysql://localhost/cardapio_digital";
+private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+````
+ <br>
+ <h2><a href="https://github.com/heronsanches/cardapio_digital/blob/master/doc/Documentocasodeuso.pdf?raw=true">Documento de caso de uso </a></h2>
