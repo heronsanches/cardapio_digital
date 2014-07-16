@@ -25,7 +25,7 @@ private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
  
  <h2>Dicas para o trabalho</h2>
  --Caso tenha dificuldade de utilizar o git, você pode fazer o download do projeto clicando no botão "Download ZIP,"<br>
- localizado no sidebar do lado direito da página inicial.
+ localizado no sidebar do lado direito da página inicial.<br>
  --Caso não exista a tabela no banco de dados para a funcionalidade que você irá implementar, pode-se criar a tabela e os devidos relacionamentos para tal.<br>
  --Caso necessite de um valor de um campo de uma tabela, na qual não exista view no sistema para populá-la você pode inserir <br>
  manualmente tais valores no banco de dados, por exemplo, uma tabela que tem relação de depêndencia de chave estrangeira.<br>
